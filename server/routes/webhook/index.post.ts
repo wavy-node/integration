@@ -1,6 +1,5 @@
 import { createError, eventHandler, getHeader, readBody } from "h3";
 import { IWebhookBody } from "~~/types/webhook-body.type";
-import { createHmacSignature } from "~~/util/hmac";
 
 // receive notifications from WavyNode
 export default eventHandler(async e => {
