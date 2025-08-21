@@ -34,7 +34,6 @@ export default eventHandler(async e => {
 		body,
 		timestamp: parseInt(timestamp),
 		secret: process.env.SECRET,
-		// 5 minutes
 		timeTolerance: 300_000,
 		signature: hmacHeader
 	})

@@ -10,6 +10,6 @@
 		"nitropack": "^2.12.4"
 	},
 	"dependencies": {
-		"@wavynode/utils": "^0.0.6"
+		"@wavynode/utils": "^0.0.7"
 	}
 }
