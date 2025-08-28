@@ -1,6 +1,5 @@
-import { validateSignature } from "@wavynode/utils";
+import { IWebhookBody, validateSignature } from "@wavynode/utils";
 import { createError, eventHandler, getHeader, readBody } from "h3";
-import { IWebhookBody } from "~~/types/webhook-body.type";
 
 export default eventHandler(async e => {
 	const [path, _] = e.path.split('?')
@@ -26,12 +25,12 @@ export default eventHandler(async e => {
 		message: 'Timestamp missing'
 	})
 
-	const body = await readBody<IWebhookBody>(e).catch(() => ({}))
+	const body = await readBody<IWebhookBody>(e)
 
 	const isValid = validateSignature({
 		method: e.method,
 		path,
-		body,
+		body: body || {},
 		timestamp: parseInt(timestamp),
 		secret: process.env.SECRET,
 		timeTolerance: 300_000,
