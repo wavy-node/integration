@@ -17,8 +17,13 @@ const getUser = async (_userId: string): Promise<IUserData> => {
 	return new Promise((resolve, _reject) => {
 		// mock call to db
 		resolve({
-			name: 'Julio César Chávez',
-			rfc: 'CHCJ990712ABC'
+			givenName: 'Julio César',
+			paternalSurname: 'Chávez',
+			maternalSurname: 'González',
+			birthdate: '1970-05-24',
+			nationality: 'MX',
+			rfc: 'CHCJ700524XXX',
+			curp: 'CHCJ700524HMXCCSLRXX',
 		})
 	})
 }
