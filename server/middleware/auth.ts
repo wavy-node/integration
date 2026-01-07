@@ -2,6 +2,7 @@ import { IWebhookBody, validateSignature } from "@wavynode/utils";
 import { createError, eventHandler, getHeader, readBody } from "h3";
 
 export default eventHandler(async e => {
+	console.log('Hello from auth')
 	const [path, _] = e.path.split('?')
 
 	// this template only accepts GET and POST requests 
@@ -18,6 +19,8 @@ export default eventHandler(async e => {
 		message: 'Signature missing'
 	})
 
+	console.log({ hmacHeader })
+
 	const timestamp = getHeader(e, 'x-wavynode-timestmap')
 	if (!timestamp) throw createError({
 		status: 400,
@@ -25,7 +28,11 @@ export default eventHandler(async e => {
 		message: 'Timestamp missing'
 	})
 
+	console.log({ timestamp })
+
 	const body = await readBody<IWebhookBody>(e)
+
+	console.log({ body })
 
 	const isValid = validateSignature({
 		method: e.method,
@@ -36,6 +43,8 @@ export default eventHandler(async e => {
 		timeTolerance: 300_000,
 		signature: hmacHeader
 	})
+
+	console.log({ isValid })
 
 	if (!isValid) throw createError({
 		status: 401,
