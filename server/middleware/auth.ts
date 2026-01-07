@@ -21,7 +21,7 @@ export default eventHandler(async e => {
 
 	console.log({ hmacHeader })
 
-	const timestamp = getHeader(e, 'x-wavynode-timestmap')
+	const timestamp = getHeader(e, 'x-wavynode-timestamp')
 	if (!timestamp) throw createError({
 		status: 400,
 		statusMessage: 'Bad Request',
