@@ -30,14 +30,17 @@ export default eventHandler(async e => {
 
 	console.log({ timestamp })
 
-	const body = await readBody<IWebhookBody>(e)
+	let body = {}
+	if (e.method === 'POST') {
+		body = await readBody<IWebhookBody>(e)
+	}
 
 	console.log({ body })
 
 	const isValid = validateSignature({
 		method: e.method,
 		path,
-		body: body || {},
+		body: body,
 		timestamp: parseInt(timestamp),
 		secret: process.env.SECRET,
 		timeTolerance: 300_000,
