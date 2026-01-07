@@ -2,7 +2,7 @@ import { IWebhookBody, validateSignature } from "@wavynode/utils";
 import { createError, eventHandler, getHeader, readBody } from "h3";
 
 export default eventHandler(async e => {
-	console.log('Hello from auth')
+	console.log(`Hello from auth, method: ${e.method}`)
 	const [path, _] = e.path.split('?')
 
 	// this template only accepts GET and POST requests 
