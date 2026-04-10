@@ -4,13 +4,13 @@ import { createError, eventHandler, getHeader, readBody } from "h3";
 export default eventHandler(async e => {
 	const [path, _] = e.path.split('?')
 
-	// this template only accepts GET and POST requests 
+	// this template only accepts GET and POST requests
 	if (e.method != 'GET' && e.method != 'POST') throw createError({
 		status: 405,
 		statusMessage: 'Method Not Allowed',
 	})
 
-	// read body
+	// Read body
 	const hmacHeader = getHeader(e, 'x-wavynode-hmac')
 	if (!hmacHeader) throw createError({
 		status: 401,

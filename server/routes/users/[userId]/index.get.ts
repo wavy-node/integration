@@ -1,7 +1,7 @@
 import { IUserData } from "@wavynode/utils";
 import { eventHandler, getRouterParam } from "h3";
 
-// give wavynode access to your user's data
+// Provide WavyNode access to your user's data
 export default eventHandler(async (e) => {
   const userId = getRouterParam(e, "userId");
 
@@ -11,7 +11,8 @@ export default eventHandler(async (e) => {
 });
 
 /**
- * Mock function for demonstration purposes
+ * Mock function for demonstration purposes.
+ * Replace this with your actual database query.
  */
 const getUser = async (_userId: string): Promise<IUserData> => {
   return new Promise((resolve, _reject) => {
@@ -49,7 +50,7 @@ const getUser = async (_userId: string): Promise<IUserData> => {
         },
       },
     };
-    // mock call to db
+    // Mock call to database
     resolve(mockUserData);
   });
 };
