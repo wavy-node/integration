@@ -1,26 +1,22 @@
 import { IWebhookBody } from "@wavynode/utils";
-import { createError, eventHandler, readBody, setResponseStatus } from "h3";
+import { defineHandler, readBody, HTTPError } from "h3";
 
-// Receive notifications from WavyNode
-export default eventHandler(async e => {
+export default defineHandler(async e => {
 	const body = await readBody<IWebhookBody>(e)
-	if (!body) throw createError({ status: 400, message: 'No body provided' })
+	if (!body) throw new HTTPError({ statusCode: 400, message: 'No body provided' })
 
 	switch (body.type) {
 		case 'notification':
-			// Handle notifications from WavyNode
 			console.log({ payload: body.data })
-			break;
+			break
 
 		case 'error':
-			// Handle errors sent from WavyNode
 			console.error(`${new Date().toISOString()}: [Error] ${body.data}`)
-			break;
+			break
 
 		default:
-			throw createError({ status: 400, message: 'Invalid body format' })
+			throw new HTTPError({ statusCode: 400, message: 'Invalid body format' })
 	}
 
-	setResponseStatus(e, 200)
 	return "Ok"
 })

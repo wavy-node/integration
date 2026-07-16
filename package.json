@@ -1,15 +1,15 @@
 {
-	"name": "nitro-app",
-	"private": true,
-	"scripts": {
-		"build": "nitro build",
-		"dev": "nitro dev"
-	},
-	"devDependencies": {
-		"h3": "^1.15.4",
-		"nitropack": "^2.12.4"
-	},
-	"dependencies": {
-		"@wavynode/utils": "^0.1.6"
-	}
+  "name": "nitro-app",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "nitro build",
+    "dev": "PORT=8181 nitro dev"
+  },
+  "devDependencies": {
+    "nitro": "^3.0.260610-beta"
+  },
+  "dependencies": {
+    "@wavynode/utils": "^0.1.6"
+  }
 }

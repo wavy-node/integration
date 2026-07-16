@@ -1,8 +1,8 @@
 import { IUserData } from "@wavynode/utils";
-import { eventHandler, getRouterParam } from "h3";
+import { defineHandler, getRouterParam } from "h3";
 
 // Provide WavyNode access to your user's data
-export default eventHandler(async (e) => {
+export default defineHandler(async (e) => {
   const userId = getRouterParam(e, "userId");
 
   const user: IUserData = await getUser(userId);

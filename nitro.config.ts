@@ -1,8 +1,7 @@
-import { defineNitroConfig } from "nitropack/config"
+import { defineConfig } from "nitro"
 
-// https://nitro.build/config
-export default defineNitroConfig({
+export default defineConfig({
+	preset: "bun",
 	compatibilityDate: "latest",
-	srcDir: "server",
-	imports: false
-});
+	serverDir: "server",
+})

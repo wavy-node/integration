@@ -1,9 +1,9 @@
 import { IUserData } from "@wavynode/utils";
-import { eventHandler, getQuery } from "h3";
+import { defineHandler, getQuery } from "h3";
 
 // give wavynode access to your user's data in batch
 // GET /users?userIds=uuid1,uuid2,uuid3
-export default eventHandler(async (e) => {
+export default defineHandler(async (e) => {
   const query = getQuery(e);
   if (!query.userIds) return [];
 
